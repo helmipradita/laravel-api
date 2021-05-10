@@ -15,6 +15,8 @@ class CreateAnimesTable extends Migration
     {
         Schema::create('animes', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->boolean('watched');
             $table->timestamps();
         });
     }
