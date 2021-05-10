@@ -23,3 +23,25 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/anime', function() {
     return Anime::all();
 });
+
+Route::post('/anime', function() {
+    request()->validate([
+        'title' => 'required'
+    ]);
+
+    return Anime::create([
+        'title' => request('title'),
+        'watched' => request('watched')
+    ]);
+});
+
+Route::put('/anime/{anime}', function(Anime $anime) {
+    return $anime->update([
+        'title' => request('title'),
+        'watched' => request('watched')
+    ]);
+});
+
+Route::delete('/anime/{anime}', function(Anime $anime) {
+    return $anime->delete();
+});
